@@ -95,21 +95,22 @@ EXECUTE PROCEDURE update_update_time();
 
 CREATE unique index on account (lower(display_name));
 
-create table group(
+create table group_of_users(
     id              serial          primary key,
     name            varchar(255),
+    password        varchar(255),
     create_time     timestamp       NOT NULL DEFAULT current_timestamp,
     update_time     timestamp       NOT NULL DEFAULT current_timestamp
 );
 
-CREATE TRIGGER group_create_time
+CREATE TRIGGER group_of_users_create_time
   BEFORE INSERT
-  ON group
+  ON group_of_users
   FOR EACH ROW
 EXECUTE PROCEDURE set_insert_times();
-CREATE TRIGGER group_update_timespan
+CREATE TRIGGER group_of_users_update_timespan
   BEFORE UPDATE
-  ON group
+  ON group_of_users
   FOR EACH ROW
 EXECUTE PROCEDURE update_update_time();
 
