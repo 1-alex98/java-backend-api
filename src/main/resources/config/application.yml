@@ -1,0 +1,29 @@
+orga:
+  jwt:
+    secret: oragne
+
+spring:
+  application:
+    name: FAF Java API
+  mvc:
+    favicon:
+      enabled: false
+  datasource:
+    url: jdbc:postgresql://${DATABASE_ADDRESS:127.0.0.1}/${DATABASE_NAME:postgres}?sslmode=disable
+    name: core
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:oragne}
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-test-query: SELECT 1
+      minimum-idle: 2
+      maximum-pool-size: 8
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        default_schema: public
+        dialect: org.hibernate.dialect.PostgreSQLDialect
