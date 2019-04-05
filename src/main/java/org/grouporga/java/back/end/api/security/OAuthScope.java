@@ -6,9 +6,11 @@ import java.util.Optional;
 
 public enum OAuthScope {
 
-  PUBLIC_PROFILE(OAuthScope._PUBLIC_PROFILE, "Read your public account data"),;
+  PUBLIC_PROFILE(OAuthScope._PUBLIC_PROFILE, "Read your public account data"),
+  CREATE_USER(OAuthScope._CREATE_USER, "Create a user");
 
   public static final String _PUBLIC_PROFILE = "public_profile";
+  public static final String _CREATE_USER = "create_user";
 
   private static final Map<String, OAuthScope> fromString;
 

@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "orga", ignoreUnknownFields = false)
 public class OrgaProperties {
+    private String version = readVersionFromMaven();
     private final OAuth2 oAuth2 = new OAuth2();
     private final Jwt jwt = new Jwt();
 
@@ -22,5 +23,11 @@ public class OrgaProperties {
         private String secret;
         private int accessTokenValiditySeconds = 3600;
         private int refreshTokenValiditySeconds = 3600;
+    }
+
+
+    private String readVersionFromMaven() {
+        String implementationVersion = getClass().getPackage().getImplementationVersion();
+        return implementationVersion==null?"snapshot":implementationVersion;
     }
 }

@@ -17,6 +17,7 @@ import java.util.Set;
 @Include(rootLevel = true, type = "account")
 // Needed to change leader of a clan
 @ToString(of = {"displayName"})
+@ReadPermission(expression = Prefab.ALL)
 public class Account extends AbstractIntegerIdEntity implements OwnableEntity {
   private String displayName;
   private String firstName;
@@ -77,6 +78,7 @@ public class Account extends AbstractIntegerIdEntity implements OwnableEntity {
   }
 
   @Transient
+  @JsonIgnore
   public boolean isLocked() {
     return false;
   }

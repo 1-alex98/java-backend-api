@@ -1,4 +1,4 @@
-package org.grouporga.java.back.end.api.security.user;
+package org.grouporga.java.back.end.api.data.repository;
 
 import org.grouporga.java.back.end.api.data.domain.Account;
 import org.springframework.data.jpa.repository.JpaRepository;

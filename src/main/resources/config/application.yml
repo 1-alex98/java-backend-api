@@ -4,7 +4,7 @@ orga:
 
 spring:
   application:
-    name: FAF Java API
+    name: Orga Java API
   mvc:
     favicon:
       enabled: false
