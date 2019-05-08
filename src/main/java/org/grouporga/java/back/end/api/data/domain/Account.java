@@ -1,7 +1,8 @@
 package org.grouporga.java.back.end.api.data.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.yahoo.elide.annotation.*;
+import com.yahoo.elide.annotation.Include;
+import com.yahoo.elide.annotation.ReadPermission;
 import lombok.Setter;
 import lombok.ToString;
 import org.grouporga.java.back.end.api.data.checks.IsEntityOwner;
@@ -15,7 +16,6 @@ import java.util.Set;
 @Entity
 @Table(name = "account")
 @Include(rootLevel = true, type = "account")
-// Needed to change leader of a clan
 @ToString(of = {"displayName"})
 @ReadPermission(expression = Prefab.ALL)
 public class Account extends AbstractIntegerIdEntity implements OwnableEntity {
@@ -76,6 +76,12 @@ public class Account extends AbstractIntegerIdEntity implements OwnableEntity {
   public String getSurName() {
     return surName;
   }
+
+  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+  public Set<GroupMemberShip> getGroupMemberShips() {
+    return groupMemberShips;
+  }
+
 
   @Transient
   @JsonIgnore

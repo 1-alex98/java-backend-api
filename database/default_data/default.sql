@@ -1,0 +1,2 @@
+insert into oauth_client(name, client_id, client_secret, redirect_uris, default_redirect_uri, default_scope,auto_approve_scopes)
+  VALUES ('postman','58da5755-96ba-46f4-912d-6fdaa400f48f','{noop}postman','http://localhost','http://localhost','public_profile create_user',true);

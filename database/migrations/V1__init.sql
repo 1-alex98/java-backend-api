@@ -163,3 +163,46 @@ CREATE TRIGGER group_membership_update_time
   ON group_membership
   FOR EACH ROW
 EXECUTE PROCEDURE update_update_time();
+
+create table money_pool
+(
+  id                   serial primary key,
+  display_name         varchar(255)        not null,
+  description          text                ,
+  currency             varchar(3)          not null default 'EUR', --ISO 4217
+  group_id             integer references group_of_users not null,
+  create_time          timestamp           NOT NULL DEFAULT current_timestamp,
+  update_time          timestamp           NOT NULL DEFAULT current_timestamp
+);
+CREATE TRIGGER money_pool_create_time
+  BEFORE INSERT
+  ON money_pool
+  FOR EACH ROW
+EXECUTE PROCEDURE set_insert_times();
+CREATE TRIGGER money_pool_update_time
+  BEFORE UPDATE
+  ON money_pool
+  FOR EACH ROW
+EXECUTE PROCEDURE update_update_time();
+
+create table expense
+(
+  id                   serial primary key,
+  display_name         varchar(255)        not null,
+  description          text                ,
+  value_with_fraction  long                not null,
+  money_pool_id        integer references money_pool not null,
+  create_time          timestamp           NOT NULL DEFAULT current_timestamp,
+  update_time          timestamp           NOT NULL DEFAULT current_timestamp
+);
+CREATE TRIGGER expense_create_time
+  BEFORE INSERT
+  ON expense
+  FOR EACH ROW
+EXECUTE PROCEDURE set_insert_times();
+CREATE TRIGGER expense_update_time
+  BEFORE UPDATE
+  ON expense
+  FOR EACH ROW
+EXECUTE PROCEDURE update_update_time();
+

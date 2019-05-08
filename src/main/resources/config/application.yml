@@ -27,3 +27,6 @@ spring:
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
         default_schema: public
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8010

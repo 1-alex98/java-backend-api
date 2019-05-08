@@ -12,6 +12,9 @@ import com.yahoo.elide.utils.coerce.CoerceUtil;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
 import org.grouporga.java.back.end.api.data.checks.IsEntityOwner;
+import org.grouporga.java.back.end.api.data.checks.IsFounderOfGroup;
+import org.grouporga.java.back.end.api.data.checks.IsPartOfGroup;
+import org.grouporga.java.back.end.api.data.checks.IsUser;
 import org.hibernate.ScrollMode;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -80,6 +83,9 @@ public class ElideConfig {
   public EntityDictionary entityDictionary() {
     ConcurrentHashMap<String, Class<? extends Check>> checks = new ConcurrentHashMap<>();
     checks.put(IsEntityOwner.EXPRESSION,IsEntityOwner.Inline.class);
+    checks.put(IsUser.EXPRESSION,IsUser.Inline.class);
+    checks.put(IsPartOfGroup.EXPRESSION,IsPartOfGroup.Inline.class);
+    checks.put(IsFounderOfGroup.EXPRESSION,IsFounderOfGroup.Inline.class);
     return new EntityDictionary(checks);
   }
 }

@@ -2,8 +2,9 @@ package org.grouporga.java.back.end.api.data.domain;
 
 import com.yahoo.elide.annotation.Include;
 import com.yahoo.elide.annotation.ReadPermission;
+import com.yahoo.elide.annotation.UpdatePermission;
 import lombok.Setter;
-import lombok.ToString;
+import org.grouporga.java.back.end.api.data.checks.IsFounderOfGroup;
 import org.grouporga.java.back.end.api.data.checks.IsPartOfGroup;
 
 import javax.persistence.*;
@@ -12,8 +13,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "group_membership")
 @Include( type = "groupMembership")
-// Needed to change leader of a clan
-@ToString(of = {"name"})
 @ReadPermission(expression = IsPartOfGroup.EXPRESSION)
 public class GroupMemberShip extends AbstractIntegerIdEntity implements OwnableEntity, GroupRelatedEntity{
     private Account account;
@@ -32,6 +31,7 @@ public class GroupMemberShip extends AbstractIntegerIdEntity implements OwnableE
         return groupOfUsers;
     }
 
+    @UpdatePermission(expression = IsFounderOfGroup.EXPRESSION)
     public Role getRole() {
         return role;
     }
