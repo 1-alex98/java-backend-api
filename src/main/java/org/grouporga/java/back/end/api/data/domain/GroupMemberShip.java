@@ -31,6 +31,7 @@ public class GroupMemberShip extends AbstractIntegerIdEntity implements OwnableE
         return groupOfUsers;
     }
 
+    @Enumerated(EnumType.STRING)
     @UpdatePermission(expression = IsFounderOfGroup.EXPRESSION)
     public Role getRole() {
         return role;
