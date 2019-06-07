@@ -12,7 +12,7 @@ before_install:
   - DOCEKR_IMAGE_VERSION=$([ -n "${TRAVIS_TAG}" ] && echo "${TRAVIS_TAG}" || echo "${TRAVIS_BRANCH##*/}")
 
 script:
-  - mvn build -Pversion=${APP_VERSION} --info
+  - mvn package
 
 after_success:
   - export IMAGE_TAG=java-backend;
