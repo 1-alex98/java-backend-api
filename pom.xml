@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.group-orga</groupId>
     <artifactId>java-backend-api</artifactId>
-    <version>0.0.2-alpha</version>
+    <version>0.0.3-alpha</version>
     <name>java-backend-api</name>
     <description>Backend forgroup-orga.org</description>
     <packaging>jar</packaging>

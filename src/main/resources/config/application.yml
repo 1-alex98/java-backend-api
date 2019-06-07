@@ -1,6 +1,7 @@
 orga:
   jwt:
-    secret: oragne
+    secret: ${JWT_SECRET:banana}
+    accessTokenValiditySeconds: ${ACCESS_TOKEN_VALIDITY:3600}
 
 spring:
   application:
