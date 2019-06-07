@@ -12,11 +12,12 @@ before_install:
   - DOCEKR_IMAGE_VERSION=$([ -n "${TRAVIS_TAG}" ] && echo "${TRAVIS_TAG}" || echo "${TRAVIS_BRANCH##*/}")
 
 script:
-  - mvn build -Pversion=${APP_VERSION} --info
+  - mvn package
 
 after_success:
   - export IMAGE_TAG=java-backend;
   - export REPO=grouporga/java-backend;
+  - echo "${IMAGE_TAG} ${REPO} ${DOCEKR_IMAGE_VERSION}"
   - if [ -n "${TRAVIS_TAG}" -o "${TRAVIS_BRANCH}" == "master" ]; then
     docker build -t ${IMAGE_TAG} . &&
     echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin &&
