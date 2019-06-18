@@ -8,6 +8,7 @@ import org.grouporga.java.back.end.api.data.checks.IsFounderOfGroup;
 import org.grouporga.java.back.end.api.data.checks.IsPartOfGroup;
 import org.grouporga.java.back.end.api.data.type.PostgreSQLEnumType;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 
@@ -15,6 +16,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "group_membership")
 @Include( type = "groupMembership")
+@TypeDef(
+        name = PostgreSQLEnumType.TYPE_NAME,
+        typeClass = PostgreSQLEnumType.class
+)
 @ReadPermission(expression = IsPartOfGroup.EXPRESSION)
 public class GroupMemberShip extends AbstractIntegerIdEntity implements OwnableEntity, GroupRelatedEntity{
     private Account account;
