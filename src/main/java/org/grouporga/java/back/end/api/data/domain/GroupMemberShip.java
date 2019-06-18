@@ -6,6 +6,8 @@ import com.yahoo.elide.annotation.UpdatePermission;
 import lombok.Setter;
 import org.grouporga.java.back.end.api.data.checks.IsFounderOfGroup;
 import org.grouporga.java.back.end.api.data.checks.IsPartOfGroup;
+import org.grouporga.java.back.end.api.data.type.PostgreSQLEnumType;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -32,6 +34,7 @@ public class GroupMemberShip extends AbstractIntegerIdEntity implements OwnableE
     }
 
     @Enumerated(EnumType.STRING)
+    @Type(type = PostgreSQLEnumType.TYPE_NAME)
     @UpdatePermission(expression = IsFounderOfGroup.EXPRESSION)
     public Role getRole() {
         return role;
@@ -53,6 +56,6 @@ public class GroupMemberShip extends AbstractIntegerIdEntity implements OwnableE
         USER,
         ADMIN,
         OBSERVER,
-        FOUNDER;
+        FOUNDER
     }
 }
